@@ -3935,6 +3935,13 @@ static bool nand_ecc_strength_good(struct mtd_info *mtd)
  * all the uninitialized function pointers with the defaults and scans for a
  * bad block table if appropriate.
  */
+
+//elphel begin
+#ifdef CONFIG_SPL_BUILD
+struct nand_buffers nbuf_data;
+#endif
+//elphel end
+
 int nand_scan_tail(struct mtd_info *mtd)
 {
 	int i;
@@ -3947,7 +3954,13 @@ int nand_scan_tail(struct mtd_info *mtd)
 			!(chip->bbt_options & NAND_BBT_USE_FLASH));
 
 	if (!(chip->options & NAND_OWN_BUFFERS)) {
+//elphel begin
+#ifndef CONFIG_SPL_BUILD
 		nbuf = kzalloc(sizeof(struct nand_buffers), GFP_KERNEL);
+#else
+		nbuf = &nbuf_data;
+#endif
+//elphel end
 		chip->buffers = nbuf;
 	} else {
 		if (!chip->buffers)

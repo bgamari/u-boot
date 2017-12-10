@@ -12,11 +12,14 @@
 #include <asm/arch/hardware.h>
 #include <asm/arch/sys_proto.h>
 
+
 DECLARE_GLOBAL_DATA_PTR;
 
 void board_init_f(ulong dummy)
 {
+#ifndef CONFIG_EZYNQ
 	ps7_init();
+#endif
 
 	arch_cpu_init();
 	/*

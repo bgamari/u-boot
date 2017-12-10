@@ -432,7 +432,8 @@ extern int unregister_mtd_user (struct mtd_notifier *old);
 #endif
 void *mtd_kmalloc_up_to(const struct mtd_info *mtd, size_t *size);
 
-#ifdef CONFIG_MTD_PARTITIONS
+/*#ifdef CONFIG_MTD_PARTITIONS*/
+#if defined(CONFIG_MTD_PARTITIONS) && !defined(CONFIG_SPL_BUILD)
 void mtd_erase_callback(struct erase_info *instr);
 #else
 static inline void mtd_erase_callback(struct erase_info *instr)

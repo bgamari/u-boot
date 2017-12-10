@@ -13,7 +13,8 @@
 #define ZYNQ_SILICON_VER_MASK	0xF0000000
 #define ZYNQ_SILICON_VER_SHIFT	28
 
-int arch_cpu_init(void)
+/* Added __weak because the function is overridden in ezynq.c */
+__weak int arch_cpu_init(void)
 {
 	zynq_slcr_unlock();
 #ifndef CONFIG_SPL_BUILD
