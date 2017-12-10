@@ -1,1 +1,12 @@
-/home/ben/tmp/ezynq/u-boot-tree/board/elphel/elphel393/Makefile
+#
+# (C) Copyright 2000-2006
+# Wolfgang Denk, DENX Software Engineering, wd@denx.de.
+#
+# SPDX-License-Identifier:	GPL-2.0+
+#
+
+obj-y	:= board.o
+
+ifeq ($(CONFIG_SPL_BUILD),y)
+$(shell touch xil_io.h)
+endif
