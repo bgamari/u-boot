@@ -10,6 +10,11 @@
 #ifndef __CONFIG_ZYNQ_COMMON_H
 #define __CONFIG_ZYNQ_COMMON_H
 
+/* XXX: Hack in microzed ezynq support */
+#include <configs/ezynq/ezynq_MT41K256M16RE125.h>  /* should be before ezynq_microzed.h as it overwrites DDR3L with DDR3 */
+#include <configs/ezynq/ezynq_XC7Z010_1CLG400.h>
+#include <configs/ezynq/ezynq_microzed.h>
+
 /* CPU clock */
 #ifndef CONFIG_CPU_FREQ_HZ
 # define CONFIG_CPU_FREQ_HZ	800000000
